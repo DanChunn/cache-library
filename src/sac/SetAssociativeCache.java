@@ -56,7 +56,7 @@ public class SetAssociativeCache <K, V> {
 	   * 
 	   * @return Value retrieved by key.
 	   */ 
-	public V get(K key){
+	public Object get(K key){
 		if(key == null){
 			throw new IllegalArgumentException("Key cannot be null.");
 		}
