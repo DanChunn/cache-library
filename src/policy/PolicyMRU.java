@@ -2,8 +2,8 @@ package policy;
 
 public class PolicyMRU <K> implements Policy <K>{
 	
-	private Object[] cache;
-
+	private K[] cache;
+	
 	public PolicyMRU(){
 		
 	}
@@ -25,8 +25,11 @@ public class PolicyMRU <K> implements Policy <K>{
 		cache[index] = key;
 	}
 
+	@SuppressWarnings("unchecked") //should be type safe
 	@Override
 	public void setCacheSize(int blocksPerSet, int numberOfSets) {
-		this.cache = new Object[numberOfSets];
+		this.cache = (K[])new Object[numberOfSets];
+
 	}
 }
+

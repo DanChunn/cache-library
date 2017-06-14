@@ -10,7 +10,7 @@ import policy.Policy;
  * BlockNodes are the objects that store the data.
  * Utilizes a Policy to evict items from within the cache.
  */
-public class SetAssociativeCache <K, V> {
+public class SetAssociativeCache <K, V>  {
 	
 	private int blocksPerSet;
 	private int numberOfSets;
@@ -26,6 +26,7 @@ public class SetAssociativeCache <K, V> {
 	   * 
 	   * @exception IllegalArgumentException An invalid argument was received.
 	   */ 
+	@SuppressWarnings("unchecked")
 	public SetAssociativeCache(int blocksPerSet, int numberOfSets, Policy<K> policy){
 		if(blocksPerSet <= 0){
 			throw new IllegalArgumentException("Blocks per set cannot be <= 0.");
@@ -39,7 +40,7 @@ public class SetAssociativeCache <K, V> {
 
 		this.blocksPerSet = blocksPerSet;
 		this.numberOfSets = numberOfSets;
-		this.cache = new BlockSet[numberOfSets];
+		this.cache = (BlockSet<K, V>[]) new BlockSet<?,?>[numberOfSets];		
 		this.policy = policy;
 		this.policy.setCacheSize(blocksPerSet, numberOfSets);
 		for(int i = 0; i < cache.length; i++){
@@ -56,14 +57,14 @@ public class SetAssociativeCache <K, V> {
 	   * 
 	   * @return Value retrieved by key.
 	   */ 
-	public Object get(K key){
+	public V get(K key){
 		if(key == null){
 			throw new IllegalArgumentException("Key cannot be null.");
 		}
 	
 		int index = key.hashCode() % numberOfSets;
 		BlockSet<K,V> bs = cache[index];
-		return (V) bs.get(key);
+		return bs.get(key);
 	}
 	
 	/**

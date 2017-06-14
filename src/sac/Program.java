@@ -1,43 +1,41 @@
 package sac;
 
+
+import java.util.HashSet;
+import java.util.Set;
+
 import policy.Policy;
+import policy.PolicyLRU;
 import policy.PolicyMRU;
 
 public class Program {
     public static void main(String[] args) {
-    		Policy<Integer> policy = null;
-    	
-    		SetAssociativeCache<Integer, Integer> sac = new SetAssociativeCache<>(3,3,policy);
-    		System.out.println("HELLO");
-    		sac.put(0, 0);
-    		sac.put(1, 1);
-    		sac.put(2, 2);
-    		sac.put(3, 3);
-    		sac.put(4, 4);
-    		sac.put(5, 5);
-    		sac.put(6, 6);
-    		sac.put(7, 7);
-    		sac.put(8, 8);
-    		sac.put(9, 9);
-    		sac.put(10, 10);
-    		sac.put(11, 11);
-    		System.out.println(sac.get(6));
-    		System.out.println(sac.get(7));
-    		System.out.println(sac.get(8));
-    		System.out.println(sac.get(0));
-    		System.out.println(sac.get(1));
-    		System.out.println(sac.get(2));
-    		System.out.println(sac.get(9));
-    		System.out.println(sac.get(10));
-    		System.out.println(sac.get(11));
-    		
-    		/*
-    		assertEquals(null, sac.get(0));
-    		assertEquals(null, sac.get(1));
-    		assertEquals(null, sac.get(2));
-    		assertEquals(9, sac.get(9));
-    		assertEquals(10, sac.get(10));
-    		assertEquals(11, sac.get(11));*/
-    		sac.print();
+		Policy<Integer> policy = new PolicyMRU<>();
+		SetAssociativeCache<Integer, HashSet<Character>> sac = new SetAssociativeCache<>(2,2,policy);
+		
+		HashSet<Character> a = new HashSet<>();
+		a.add('A');
+		a.add('B');
+		HashSet<Character> b = new HashSet<>();
+		HashSet<Character> c = new HashSet<>();
+		HashSet<Character> d = new HashSet<>();
+		d.add('A');
+		HashSet<Character> e = new HashSet<>();
+		e.add('b');
+		e.add('b');
+		HashSet<Character> f = new HashSet<>();
+		f.add('c');
+		sac.put(1, a);
+		sac.put(2, b);
+		sac.put(3, c);
+		sac.put(4, d);
+		sac.put(5, e);
+		sac.put(6, f);
+		sac.print();
+
+		HashSet<Character> v = sac.get(5);
+		for (Character character : v) {
+			System.out.println(character);
+		}
     }
 }

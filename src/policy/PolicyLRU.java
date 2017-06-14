@@ -2,9 +2,6 @@ package policy;
 
 import java.util.HashMap;
 
-import sac.BlockNode;
-
-
 public class PolicyLRU <K> implements Policy <K>{
 	private NodeSet<K>[] cache;    
 	
@@ -34,10 +31,10 @@ public class PolicyLRU <K> implements Policy <K>{
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void setCacheSize(int blocksPerSet, int numberOfSets) {
-		this.cache = new NodeSet[numberOfSets];
-		//this.numberOfSets = numberOfSets;
+		this.cache = (NodeSet<K>[]) new NodeSet<?>[numberOfSets];
 		for(int i = 0; i < cache.length; i++){
 			cache[i] = new NodeSet<K>(blocksPerSet);
 		}
