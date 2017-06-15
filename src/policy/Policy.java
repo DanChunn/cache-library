@@ -16,7 +16,7 @@ public interface Policy <K> {
 	/** 
 	 * Performs an update to the Policy when the cache performs a get call.
 	 * 
-	 * @param index Index of an individual set located within the cache array.
+	 * @param index Index of an individual set located within the cache.
 	 * @param key The key item used for lookup of an item within the cache.
 	 * */
 	public void getUpdate(int index, K key);
@@ -24,7 +24,7 @@ public interface Policy <K> {
 	/** 
 	 * Performs an update to the Policy when the cache performs a put call.
 	 * 
-	 * @param index Index of an individual set located within the cache array.
+	 * @param index Index of an individual set located within the cache.
 	 * @param key The key item used for lookup of an item within the cache.
 	 * */
 	public void putUpdate(int index, K key);

@@ -308,6 +308,8 @@ public class ProgramTestMRU {
 		f1.add('c');
 		assertTrue(sac.get(6).equals(f1));
 		assertFalse(sac.get(6).equals(b));
+		assertTrue(sac.get(6).contains('c'));
+		assertFalse(sac.get(6).contains('d'));
 	}
 	
 }

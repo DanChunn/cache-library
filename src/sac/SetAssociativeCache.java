@@ -14,8 +14,9 @@ public class SetAssociativeCache <K, V>  {
 	
 	private int blocksPerSet;
 	private int numberOfSets;
-	private BlockSet<K,V>[] cache;
 	private Policy<K> policy;
+	
+	private ArrayList<BlockSet<K,V>> cache;
 	
 	/**
 	   * Constructor for the cache.
@@ -26,7 +27,6 @@ public class SetAssociativeCache <K, V>  {
 	   * 
 	   * @exception IllegalArgumentException An invalid argument was received.
 	   */ 
-	@SuppressWarnings("unchecked")
 	public SetAssociativeCache(int blocksPerSet, int numberOfSets, Policy<K> policy){
 		if(blocksPerSet <= 0){
 			throw new IllegalArgumentException("Blocks per set cannot be <= 0.");
@@ -40,11 +40,11 @@ public class SetAssociativeCache <K, V>  {
 
 		this.blocksPerSet = blocksPerSet;
 		this.numberOfSets = numberOfSets;
-		this.cache = (BlockSet<K, V>[]) new BlockSet<?,?>[numberOfSets];		
+		this.cache = new ArrayList<>();	
 		this.policy = policy;
 		this.policy.setCacheSize(blocksPerSet, numberOfSets);
-		for(int i = 0; i < cache.length; i++){
-			cache[i] = new BlockSet<K, V>(blocksPerSet, i, policy);
+		for(int i = 0; i < numberOfSets; i++){
+			cache.add(i, new BlockSet<K, V>(blocksPerSet, i, policy));
 		}
 	}
 	
@@ -63,7 +63,7 @@ public class SetAssociativeCache <K, V>  {
 		}
 	
 		int index = key.hashCode() % numberOfSets;
-		BlockSet<K,V> bs = cache[index];
+		BlockSet<K,V> bs = cache.get(index);
 		return bs.get(key);
 	}
 	
@@ -81,7 +81,7 @@ public class SetAssociativeCache <K, V>  {
 		}
 		
 		int index = Math.abs(key.hashCode() % numberOfSets);
-		BlockSet<K,V> bs = cache[index];
+		BlockSet<K,V> bs = cache.get(index);
 		bs.put(key, value);
 	}
 	
@@ -91,8 +91,8 @@ public class SetAssociativeCache <K, V>  {
 	public void print(){
 		System.out.println("-----");
 		System.out.println("N:" + blocksPerSet + " Sets:" + numberOfSets);
-		for(int i = 0; i < cache.length; i++){
-			BlockSet<K,V> bs = cache[i];
+		for(int i = 0; i < cache.size(); i++){
+			BlockSet<K,V> bs = cache.get(i);
 			HashMap<K, BlockNode<K,V>> map = bs.getMap();
 			System.out.println();
 			System.out.print("Index:" + i);
@@ -105,5 +105,4 @@ public class SetAssociativeCache <K, V>  {
 		}
 		System.out.println();
 	}
-	
 }

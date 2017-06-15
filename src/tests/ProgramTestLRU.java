@@ -15,6 +15,7 @@ import policy.PolicyLRU;
 public class ProgramTestLRU {
 	
 	
+	
 	//General test
 	@Test
 	public void test0(){
@@ -42,7 +43,7 @@ public class ProgramTestLRU {
 		assertEquals(Integer.valueOf(9), sac.get(9));
 		assertEquals(Integer.valueOf(10), sac.get(10));
 		assertEquals(Integer.valueOf(11), sac.get(11));
-		sac.print();
+		//sac.print();
 	}
 	
 	
@@ -66,7 +67,7 @@ public class ProgramTestLRU {
         assertEquals(Integer.valueOf(5), sac.get('D'));
         assertEquals(null, sac.get('X'));
         assertEquals(null, sac.get('B'));
-        sac.print();
+        //sac.print();
 	}
 
 	
@@ -85,7 +86,7 @@ public class ProgramTestLRU {
 		assertEquals(null, sac.get(1));
 		assertEquals(Integer.valueOf(3), sac.get(3));
 		assertEquals(Integer.valueOf(4), sac.get(4));
-		sac.print();
+		//sac.print();
 	}
 	
 	//Num of Sets = 1,  mixed put and get
@@ -102,7 +103,7 @@ public class ProgramTestLRU {
 		assertEquals(null, sac.get(1));
 		assertEquals(Integer.valueOf(4), sac.get(4));
 		assertEquals(Integer.valueOf(2), sac.get(2));
-		sac.print();
+		//sac.print();
 	}
 	
 	//Num of Sets = 1, mixed put and get
@@ -117,7 +118,7 @@ public class ProgramTestLRU {
 		sac.put(1, 4);
 		assertEquals(Integer.valueOf(4), sac.get(1));
 		assertEquals(Integer.valueOf(3), sac.get(2));
-		sac.print();
+		//sac.print();
 	}
 	
 	//Mixed dimensions, mixed put and get
@@ -143,7 +144,7 @@ public class ProgramTestLRU {
 		assertEquals(null, sac.get(4));
 		assertEquals(Integer.valueOf(11), sac.get(1));
 		assertEquals(Integer.valueOf(88), sac.get(8));
-		sac.print();
+		//sac.print();
 	}
 	
 	//Blocks per set = 1
@@ -161,7 +162,7 @@ public class ProgramTestLRU {
 		assertEquals(null, sac.get(1));
 		assertEquals(Integer.valueOf(4), sac.get(4));
 		assertEquals(Integer.valueOf(3), sac.get(3));
-		sac.print();
+		//sac.print();
 	}
 	
 	//Cache of 1 set of size 1
@@ -177,7 +178,7 @@ public class ProgramTestLRU {
 		assertEquals(null, sac.get(1));
 		assertEquals(null, sac.get(2));
 		assertEquals(Integer.valueOf(3), sac.get(3));
-		sac.print();
+		//sac.print();
 	}
 	
 	//Collections as keys, mixed put and get
@@ -215,7 +216,7 @@ public class ProgramTestLRU {
 		sac.put(z, 56);
 		assertEquals(null, sac.get(b));
 		assertEquals(Integer.valueOf(55), sac.get(f));
-		sac.print();
+		//sac.print();
 	}
 	
 	//Objects as keys,  mixed put and get
@@ -243,7 +244,7 @@ public class ProgramTestLRU {
 		assertEquals(Integer.valueOf(3), sac.get(c));
 		assertEquals(Integer.valueOf(4), sac.get(d));
 		assertEquals(Integer.valueOf(4), sac.get(e));	
-		sac.print();
+		//sac.print();
 	}
 	
 	//String as keys
@@ -259,7 +260,7 @@ public class ProgramTestLRU {
 		sac.put(b, 99);
 		assertEquals(Integer.valueOf(99), sac.get(a));
 		assertEquals(Integer.valueOf(99), sac.get(b));
-		sac.print();
+		//sac.print();
 	}
 	
 	//Collections as values,  mixed put and get,  integrity check
@@ -295,13 +296,17 @@ public class ProgramTestLRU {
 		assertEquals(null, sac.get(3));
 		assertEquals(e, sac.get(5));
 		assertEquals(f, sac.get(6));
-		sac.print();
+		//sac.print();
 		
 		//Checking integrity
 		HashSet<Character> f1 = new HashSet<>();
 		f1.add('c');
 		assertTrue(sac.get(6).equals(f1));
 		assertFalse(sac.get(6).equals(b));
+		assertTrue(f1.contains('c'));
+		assertFalse(f1.contains('d'));
+		assertTrue(sac.get(6).contains('c'));
+		assertFalse(sac.get(6).contains('d'));
 	}
 	
 }
