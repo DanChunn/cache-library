@@ -114,15 +114,6 @@ public class BlockSet <K, V>{
     }
     
 	/**
-	   * Retrieves the capacity of the BlockSet.
-	   * 
-	   * @return Capacity of the BlockSet;
-	   */ 
-    public int getCapacity(){
-    	return this.capacity;
-    }
-	
-	/**
 	   * Prints the contents of the BlockSet to console.
 	   */ 
     public void print(){

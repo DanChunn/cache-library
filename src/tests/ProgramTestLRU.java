@@ -161,7 +161,11 @@ public class ProgramTestLRU {
 		
 		assertEquals(null, sac.get(1));
 		assertEquals(Integer.valueOf(4), sac.get(4));
-		assertEquals(Integer.valueOf(3), sac.get(3));
+		assertEquals(null, sac.get(2));
+		sac.put(5, 11);
+		sac.put(7, 77);
+		assertEquals(Integer.valueOf(11), sac.get(5));
+		assertEquals(Integer.valueOf(77), sac.get(7));
 		//sac.print();
 	}
 	
@@ -308,6 +312,123 @@ public class ProgramTestLRU {
 		assertTrue(sac.get(6).contains('c'));
 		assertFalse(sac.get(6).contains('d'));
 	}
+	@Test
+	public void test12(){
+		Policy<Integer> policy = new PolicyLRU<>();
+		SetAssociativeCache<Integer, Integer> sac = new SetAssociativeCache<>(10,1,policy);
+		
+		sac.put(10,13);
+		sac.put(3, 17);
+		sac.put(6, 11);
+		sac.put(10, 5);
+		sac.put(9, 10);
+		assertEquals(null, sac.get(13));
+		sac.put(2, 19);
+		assertEquals(Integer.valueOf(19), sac.get(2));
+		assertEquals(Integer.valueOf(17), sac.get(3));
+		sac.put(5, 25);
+		assertEquals(null, sac.get(8));
+		sac.put(9, 22);
+		sac.put(5, 5);
+		sac.put(1, 30);
+		assertEquals(null, sac.get(11));
+		sac.put(9, 12);
+		assertEquals(null, sac.get(7));
+		assertEquals(Integer.valueOf(5), sac.get(5));
+		assertEquals(null, sac.get(8));
+		assertEquals(null, sac.get(12));
+		sac.put(4, 30);
+		sac.put(9, 3);
+		assertEquals(Integer.valueOf(5), sac.get(10));
+		assertEquals(Integer.valueOf(5), sac.get(10));
+		sac.put(6, 14);
+		sac.put(3, 1);
+		assertEquals(Integer.valueOf(1), sac.get(3));
+		sac.put(10, 11);
+		assertEquals(null, sac.get(8));
+		sac.put(2, 14);
+		assertEquals(Integer.valueOf(30), sac.get(1));
+		assertEquals(Integer.valueOf(5), sac.get(5));
+		assertEquals(Integer.valueOf(30), sac.get(4));
+		sac.put(11, 4);
+		sac.put(12, 24);
+		sac.put(5, 18);
+		assertEquals(null, sac.get(13));
+		sac.put(7, 23);
+		assertEquals(null, sac.get(8));
+		assertEquals(Integer.valueOf(24), sac.get(12));
+		sac.put(3, 27);
+		sac.put(2, 12);
+		assertEquals(Integer.valueOf(18), sac.get(5));
+		sac.put(2, 9);
+		sac.put(13, 4);
+		sac.put(8, 18);
+		sac.put(1, 7);
+		assertEquals(null, sac.get(6));
+		sac.put(9, 29);
+		sac.put(8, 21);
+		assertEquals(Integer.valueOf(18), sac.get(5));
+		sac.put(6, 30);
+		sac.put(1, 12);
+		assertEquals(null, sac.get(10));
+		sac.put(4, 15);
+		sac.put(7, 22);
+		sac.put(11, 26);
+		sac.put(8, 17);
+		sac.put(9, 29);
+		assertEquals(Integer.valueOf(18), sac.get(5));
+		sac.put(3, 4);
+		sac.put(11, 30);
+		assertEquals(null, sac.get(12));
+		sac.put(4, 29);
+		assertEquals(Integer.valueOf(4), sac.get(3));
+		assertEquals(Integer.valueOf(29), sac.get(9));
+		assertEquals(Integer.valueOf(30), sac.get(6));
+		sac.put(3, 4);
+		assertEquals(Integer.valueOf(12), sac.get(1));
+		assertEquals(null, sac.get(10));
+		sac.put(3, 29);
+		sac.put(10, 28);
+		sac.put(1, 20);
+		sac.put(11, 13);
+		assertEquals(Integer.valueOf(29), sac.get(3));
+		sac.put(3, 12);
+		sac.put(3, 8);
+		sac.put(10, 9);
+		sac.put(3, 26);
+		assertEquals(Integer.valueOf(17), sac.get(8));
+		assertEquals(Integer.valueOf(22), sac.get(7));
+		assertEquals(Integer.valueOf(18), sac.get(5));
+		sac.put(13, 17);
+		sac.put(2, 27);
+		sac.put(11, 15);
+		assertEquals(null, sac.get(12));
+		sac.put(9, 19);
+		sac.put(2, 15);
+		sac.put(3, 16);
+		assertEquals(Integer.valueOf(20), sac.get(1));
+		sac.put(12, 17);
+		sac.put(9, 1);
+		sac.put(6, 19);
+		assertEquals(null, sac.get(4));
+		assertEquals(Integer.valueOf(18), sac.get(5));
+		assertEquals(Integer.valueOf(18), sac.get(5));
+		sac.put(8, 1);
+		sac.put(11, 7);
+		sac.put(5, 2);
+		sac.put(9, 28);
+		assertEquals(Integer.valueOf(20), sac.get(1));
+		sac.put(2, 2);
+		sac.put(7, 4);
+		sac.put(4, 22);
+		sac.put(7, 24);
+		sac.put(9, 26);
+		sac.put(13, 28);
+		sac.put(11, 26);
+		
+		//sac.print();
+	}
+	
 	
 }
 

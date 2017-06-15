@@ -130,7 +130,7 @@ class NodeSet<K> {
 	   */ 
 	private void deleteNode(Node<K> node){
     	if(node == null) return;
-        count--;
+        decrementCount();
         if(node == head){
         	Node<K> temp = node.getNext();
             if(temp != null) temp.setPrev(null);
@@ -160,7 +160,8 @@ class NodeSet<K> {
 	   */ 
 	private void addToHead(Node<K> node){
     	if(node == null) return;
-        count++;
+    	incrementCount();
+        //count++;
         if(head == null){
             head = node;
             tail = node;
@@ -172,6 +173,20 @@ class NodeSet<K> {
         node.setPrev(null);
         head = node;
     }
+	
+	/**
+	   * Increments the count of the NodeSet.
+	   */ 
+	private void incrementCount(){
+		this.count++;
+	}
+  
+	/**
+	   * Decrements the count of the NodeSet.
+	   */ 
+	private void decrementCount(){
+		this.count--;
+	}	
 	
 	/**
 	   * Retrieves a node to evict.
