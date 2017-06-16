@@ -7,8 +7,7 @@ import sac.SetAssociativeCache;
 
 
 /** 
- * An example program demonstrating a cache that takes <Integer, Character> pairs.
- * Can be run in the console.
+ * An example program demonstrating a cache that takes Integer, Character pairs.
  * */
 public class ExampleProgram {
     public static void main(String[] args) {
