@@ -42,4 +42,25 @@ public class ProgramTestIllegalArgs {
 		SetAssociativeCache<Character, Integer> sac = new SetAssociativeCache<>(-1,4,policy);
 		sac.print();
 	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void test6(){
+		Policy<Character> policy = new PolicyLRU<>();
+		SetAssociativeCache<Character, Integer> sac = new SetAssociativeCache<>(0,0,policy);
+		sac.print();
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void test7(){
+		Policy<Character> policy = new PolicyLRU<>();
+		SetAssociativeCache<Character, Integer> sac = new SetAssociativeCache<>(-1,-1,policy);
+		sac.print();
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void test8(){
+		Policy<Character> policy = null;
+		SetAssociativeCache<Character, Integer> sac = new SetAssociativeCache<>(-1,-1,policy);
+		sac.print();
+	}
 }
