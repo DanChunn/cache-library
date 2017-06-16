@@ -59,22 +59,5 @@ public class Program {
 		for(int i = 0; i <= 7; i++){
 			System.out.println(i + " : " + sac2.get(i));
 		}
-		
-    	//A policy instance is created.
-		Policy<Integer> policy3 = new PolicyLRU<>();
-		
-		//A cache is created with 1 sets of size 4 each.
-		SetAssociativeCache<Integer, Integer> sac3 = new SetAssociativeCache<>(2,1,policy2);
-		
-		
-		sac3.put(2,1);
-		sac3.put(2, 2);
-		System.out.println(sac3.get(2));
-		sac3.put(1,1);
-		sac3.put(4, 1);
-		System.out.println(sac3.get(2));
-		
-
-		sac3.print();
     }
 }
