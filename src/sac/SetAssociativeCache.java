@@ -42,7 +42,7 @@ public class SetAssociativeCache <K, V>  {
 		this.numberOfSets = numberOfSets;
 		this.cache = new ArrayList<>();	
 		this.policy = policy;
-		this.policy.setCacheSize(blocksPerSet, numberOfSets);
+		this.policy.setCacheSize(blocksPerSet, numberOfSets); //calls policy to set size
 		for(int i = 0; i < numberOfSets; i++){
 			cache.add(i, new BlockSet<K, V>(blocksPerSet, i, policy));
 		}
@@ -62,7 +62,7 @@ public class SetAssociativeCache <K, V>  {
 			throw new IllegalArgumentException("Key cannot be null.");
 		}
 	
-		int index = key.hashCode() % numberOfSets;
+		int index = Math.abs(key.hashCode() % numberOfSets);
 		BlockSet<K,V> bs = cache.get(index);
 		return bs.get(key);
 	}

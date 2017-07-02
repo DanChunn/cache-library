@@ -67,7 +67,7 @@ public class PolicyLRU <K> implements Policy <K>{
  * An object used to store node entries as a set within the cache.
  * Maintains least recently used with a doubly linked list of BlockNodes.
  */ 
-class NodeSet<K> {
+class NodeSet<K> { 
     private HashMap<K, Node<K>> map;
     private Node<K> head;
     private Node<K> tail; //LRU item
@@ -131,7 +131,7 @@ class NodeSet<K> {
 	private void deleteNode(Node<K> node){
     	if(node == null) return;
         decrementCount();
-        if(node == head){
+        if(node == head){ 
         	Node<K> temp = node.getNext();
             if(temp != null) temp.setPrev(null);
             node.setNext(null);
@@ -140,7 +140,7 @@ class NodeSet<K> {
             return;
         }
         
-        if(node == tail){
+        if(node == tail){ 
         	Node<K> temp = node.getPrev();
             if(temp != null) node.setNext(null);
             node.setNext(null);
@@ -161,7 +161,6 @@ class NodeSet<K> {
 	private void addToHead(Node<K> node){
     	if(node == null) return;
     	incrementCount();
-        //count++;
         if(head == null){
             head = node;
             tail = node;

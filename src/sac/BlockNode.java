@@ -4,8 +4,8 @@ package sac;
  * BlockNode - used by the BlockSet to store key value pairs.
  */
 public class BlockNode<K, V>{
-	private K key; //Tag
-	private V value; //Data
+	private K key; 
+	private V value; 
 
 	/**
 	   * Constructor for the BlockNode.
